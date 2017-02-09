@@ -7,7 +7,7 @@
 import sys,os
 import idc,idautils,idaapi
 
-from PySide import QtGui as QtGui
+from PyQt5 import QtCore, QtWidgets, QtGui
 
 # store the root path
 import __root__

@@ -4,10 +4,10 @@ import idc
 import idaapi
 import idautils
 
-from PySide import QtGui
+from PyQt5 import QtGui, QtWidgets
 
 
-diag = QtGui.QColorDialog()
+diag = QtWidgets.QColorDialog()
 
 x = diag.getColor()
 r,g,b,a = x.getRgb()

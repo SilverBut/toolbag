@@ -18,7 +18,7 @@ from config import *
 
 from providers import ida
 
-from PySide import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class ToolBag:
@@ -26,7 +26,7 @@ class ToolBag:
 
         self.options = options
         self.provider = ida.IDA()
-
+        
         # show splash screen
         # 
         # this will only really be shown when toolbag is loaded for the first time
@@ -34,7 +34,7 @@ class ToolBag:
         if options['show_splash']:
             splash_image = options['ida_user_dir'] + os.sep + "rsrc" + os.sep + "splash.png"
             pixmap = QtGui.QPixmap(splash_image)
-            splash = QtGui.QSplashScreen(pixmap)
+            splash = QtWidgets.QSplashScreen(pixmap)
             splash.show()
 
         if options['file_system_type'] == 'netnode':

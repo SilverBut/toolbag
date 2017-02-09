@@ -7,7 +7,7 @@ import idaapi
 from idaapi import *
 from idc import *
 from idautils import *
-from PySide import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 
 
 class SwitchViewer_t(PluginForm):
@@ -26,16 +26,16 @@ class SwitchViewer_t(PluginForm):
         Called when the plugin form is created
         """
         # Get parent widget
-        self.parent = self.FormToPySideWidget(form)
+        self.parent = self.FormToPyQtWidget(form)
         self.calls = {}
 
         # Create tree control
-        self.tree = QtGui.QTreeWidget()
+        self.tree = QtWidgets.QTreeWidget()
         self.tree.setHeaderLabels(("Names","# Cases"))
         self.tree.setColumnWidth(0, 100)
 
         # Create layout
-        layout = QtGui.QVBoxLayout()
+        layout = QtWidgets.QVBoxLayout()
         layout.addWidget(self.tree)
 
         self.Create()
@@ -60,7 +60,7 @@ class SwitchViewer_t(PluginForm):
 
     def Create(self):
         title = "Switches"
-        #root = QtGui.QTreeWidgetItem(self, title)
+        #root = QtWidgets.QTreeWidgetItem(self, title)
         comment = COLSTR("; Double-click to follow", SCOLOR_BINPREF)
         #self.AddLine(comment)
         comment = COLSTR("; Hover for preview", SCOLOR_BINPREF)
@@ -69,11 +69,11 @@ class SwitchViewer_t(PluginForm):
         self.tree.setColumnCount(2)
         self.tree.clicked.connect(self.click_tree)
         for func in sorted(self.switches.keys()):
-            func_node = QtGui.QTreeWidgetItem(self.tree)
+            func_node = QtWidgets.QTreeWidgetItem(self.tree)
             func_node.setText(0,func)
             func_node.setText(1,"")
             for item in self.switches[func]:
-                node = QtGui.QTreeWidgetItem(func_node)
+                node = QtWidgets.QTreeWidgetItem(func_node)
                 addr = item[0]
                 cases = item[1]
                 address_element = "0x%08x" % addr
@@ -82,7 +82,7 @@ class SwitchViewer_t(PluginForm):
                 #line = address_element + value_element
                 self.calls[addr] = item[2]
                 for c in item[2]:
-                    cnode = QtGui.QTreeWidgetItem(node)
+                    cnode = QtWidgets.QTreeWidgetItem(node)
                     cnode.setText(0,c[0])
                     cnode.setText(1,c[2])
 

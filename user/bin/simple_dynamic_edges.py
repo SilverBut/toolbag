@@ -10,7 +10,7 @@
 from idautils import XrefsFrom
 from idaapi import fl_CN as call_near, fl_CF as call_far
 
-from PySide import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from providers import ida
 
 provider = ida.IDA()
@@ -19,25 +19,25 @@ def init():
     DynamicCallDiag(ui_obj)
 	
 
-class DynamicCallDiag(QtGui.QDialog):
+class DynamicCallDiag(QtWidgets.QDialog):
     def __init__(self, ui_obj, parent=None):
         super(DynamicCallDiag, self).__init__(parent)
 
         self.ui_obj = ui_obj
-        self.field1 = QtGui.QInputDialog()
-        #self.field2 = QtGui.QInputDialog()
-        self.field1.setOption(QtGui.QInputDialog.NoButtons)
-        #self.field2.setOption(QtGui.QInputDialog.NoButtons)
+        self.field1 = QtWidgets.QInputDialog()
+        #self.field2 = QtWidgets.QInputDialog()
+        self.field1.setOption(QtWidgets.QInputDialog.NoButtons)
+        #self.field2.setOption(QtWidgets.QInputDialog.NoButtons)
         self.field1.setLabelText("Properties of destination initialization:")
         #self.field2.setLabelText("Optional Group:")
 
         self.field1.keyPressEvent = self.keyPressEvent
         #self.field2.keyPressEvent = self.keyPressEvent
         
-        confirm = QtGui.QPushButton("Go")
+        confirm = QtWidgets.QPushButton("Go")
         confirm.clicked.connect(self.add_dyn_edges)
 
-        layout = QtGui.QVBoxLayout()
+        layout = QtWidgets.QVBoxLayout()
         #layout.addWidget(self.field2)
         layout.addWidget(self.field1)
         

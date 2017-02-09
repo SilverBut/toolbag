@@ -9,7 +9,7 @@ import idaapi
 import idc
 import ctypes
 import re
-from PySide import QtGui
+from PyQt5 import QtGui, QtWidgets
 
 print "Importing CopyEA"
 

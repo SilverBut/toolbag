@@ -136,18 +136,18 @@ class ToolbagTask:
     
     def prep(self, ui_obj):
         # test QtGui
-        from PySide import QtCore, QtGui
+        from PyQt5 import QtCore, QtGui, QtWidgets
 
-        class PrepDialog(QtGui.QDialog):
+        class PrepDialog(QtWidgets.QDialog):
             def __init__(self, ui_obj, fname, parent=None):
                 super(PrepDialog, self).__init__(parent)
 
                 self.fname = fname
                 self.ui_obj = ui_obj
-                self.field1 = QtGui.QInputDialog()
-                self.field2 = QtGui.QInputDialog()
-                self.field1.setOption(QtGui.QInputDialog.NoButtons)
-                self.field2.setOption(QtGui.QInputDialog.NoButtons)
+                self.field1 = QtWidgets.QInputDialog()
+                self.field2 = QtWidgets.QInputDialog()
+                self.field1.setOption(QtWidgets.QInputDialog.NoButtons)
+                self.field2.setOption(QtWidgets.QInputDialog.NoButtons)
                 self.field1.setLabelText("Command Line:")
                 self.field2.setLabelText("Start Address:")
                 self.field1.setTextValue("")
@@ -156,10 +156,10 @@ class ToolbagTask:
                 self.field1.keyPressEvent = self.keyPressEvent
                 self.field2.keyPressEvent = self.keyPressEvent
                 
-                confirm = QtGui.QPushButton("Prepare")
+                confirm = QtWidgets.QPushButton("Prepare")
                 confirm.clicked.connect(self.prepareTask)
 
-                layout = QtGui.QVBoxLayout()
+                layout = QtWidgets.QVBoxLayout()
                 layout.addWidget(self.field2)
                 layout.addWidget(self.field1)
                 
