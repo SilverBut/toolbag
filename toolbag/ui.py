@@ -2101,7 +2101,7 @@ class UI(PluginForm):
 
     def highlightAddressList(self, addresses, color=0xFF):
         for addr in addresses:
-            self.provider.setColor(addr, QtGui.QColor(color))
+            self.provider.setColor(addr, color)
         
     def editUserScript(self):
         if self.options['dev_mode']:
@@ -2303,13 +2303,13 @@ class UI(PluginForm):
             if self.options['coloring_enabled'] == True:    
 
                 if is_import:
-                    self.provider.setColor(ea, QtGui.QColor(self.options['history_color']))
+                    self.provider.setColor(ea, self.options['history_color'])
 
                 else:
                     block = self.provider.basicBlockBoundaries(ea)
 
                     for i in self.provider.iterInstructions(block[0], block[1]):
-                        self.provider.setColor(i, QtGui.QColor(self.options['history_color']))
+                        self.provider.setColor(i, self.options['history_color'])
             
             if self.options['dev_mode']:
                 print "[D] Trying to add the function to the reftree...."
